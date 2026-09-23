@@ -48,12 +48,20 @@ export interface AboutContent {
   paragraphs: string[];
 }
 
+export interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
+  enabled: boolean;
+}
+
 export interface SiteContent {
   products: Product[];
   collections: Collection[];
   lookbook: LookbookItem[];
   hero: HeroContent;
   about: AboutContent;
+  socials: SocialLink[];
   lastUpdated: string;
 }
 
@@ -97,6 +105,14 @@ const defaultContent: SiteContent = {
       "From our first drop to our latest collection, we remain committed to pushing boundaries and redefining what streetwear can be.",
     ],
   },
+  socials: [
+    { platform: "Instagram", url: "https://instagram.com/pinsandneedle", icon: "instagram", enabled: true },
+    { platform: "Facebook", url: "https://facebook.com/pinsandneedle", icon: "facebook", enabled: true },
+    { platform: "TikTok", url: "https://tiktok.com/@pinsandneedle", icon: "tiktok", enabled: true },
+    { platform: "WhatsApp", url: "https://wa.me/254700000000", icon: "whatsapp", enabled: true },
+    { platform: "Twitter/X", url: "https://x.com/pinsandneedle", icon: "twitter", enabled: false },
+    { platform: "YouTube", url: "https://youtube.com/@pinsandneedle", icon: "youtube", enabled: false },
+  ],
   lastUpdated: new Date().toISOString(),
 };
 
@@ -107,6 +123,7 @@ interface ContentContextType {
   updateLookbook: (lookbook: LookbookItem[]) => void;
   updateHero: (hero: HeroContent) => void;
   updateAbout: (about: AboutContent) => void;
+  updateSocials: (socials: SocialLink[]) => void;
   resetContent: () => void;
   hasUnsavedChanges: boolean;
   saveChanges: () => void;
@@ -147,6 +164,11 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     setHasUnsavedChanges(true);
   };
 
+  const updateSocials = (socials: SocialLink[]) => {
+    setContent(prev => ({ ...prev, socials, lastUpdated: new Date().toISOString() }));
+    setHasUnsavedChanges(true);
+  };
+
   const saveChanges = () => {
     localStorage.setItem('pan_content', JSON.stringify(content));
     setHasUnsavedChanges(false);
@@ -177,6 +199,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       updateLookbook,
       updateHero,
       updateAbout,
+      updateSocials,
       resetContent,
       hasUnsavedChanges,
       saveChanges,

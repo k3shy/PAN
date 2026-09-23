@@ -23,10 +23,11 @@ import CollectionsEditor from '../components/portal/CollectionsEditor';
 import LookbookEditor from '../components/portal/LookbookEditor';
 import HeroEditor from '../components/portal/HeroEditor';
 import AboutEditor from '../components/portal/AboutEditor';
+import SocialMediaEditor from '../components/portal/SocialMediaEditor';
 import UsersManager from '../components/portal/UsersManager';
 import AnalyticsView from '../components/portal/AnalyticsView';
 
-type Tab = 'dashboard' | 'products' | 'collections' | 'lookbook' | 'hero' | 'about' | 'users' | 'analytics';
+type Tab = 'dashboard' | 'products' | 'collections' | 'lookbook' | 'hero' | 'about' | 'socials' | 'users' | 'analytics';
 
 export default function Portal() {
   const { user, logout, hasPermission, permissions } = useAuth();
@@ -48,6 +49,7 @@ export default function Portal() {
     { id: 'lookbook' as Tab, label: 'Lookbook', icon: Image, show: permissions?.canEditLookbook },
     { id: 'hero' as Tab, label: 'Hero Section', icon: FileText, show: permissions?.canEditHero },
     { id: 'about' as Tab, label: 'About Section', icon: FileText, show: permissions?.canEditAbout },
+    { id: 'socials' as Tab, label: 'Social Media', icon: ExternalLink, show: true },
     { id: 'users' as Tab, label: 'User Management', icon: Users, show: permissions?.canManageUsers },
     { id: 'analytics' as Tab, label: 'Analytics', icon: BarChart3, show: permissions?.canViewAnalytics },
   ].filter(item => item.show);
@@ -66,6 +68,8 @@ export default function Portal() {
         return <HeroEditor />;
       case 'about':
         return <AboutEditor />;
+      case 'socials':
+        return <SocialMediaEditor />;
       case 'users':
         return <UsersManager />;
       case 'analytics':
@@ -253,6 +257,7 @@ function DashboardView({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
     { label: 'Edit Lookbook', tab: 'lookbook' as Tab, show: permissions?.canEditLookbook },
     { label: 'Edit Hero', tab: 'hero' as Tab, show: permissions?.canEditHero },
     { label: 'Edit About', tab: 'about' as Tab, show: permissions?.canEditAbout },
+    { label: 'Social Media', tab: 'socials' as Tab, show: true },
     { label: 'Manage Users', tab: 'users' as Tab, show: permissions?.canManageUsers },
   ].filter(action => action.show);
 
