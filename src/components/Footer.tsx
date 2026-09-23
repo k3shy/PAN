@@ -178,10 +178,10 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-pan-white mb-4 tracking-wider">SUPPORT</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">FAQs</a></li>
-              <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Order Tracking</a></li>
+              <li><a href="/faq" className="text-sm text-pan-muted hover:text-pan-white transition-colors">FAQs</a></li>
+              <li><a href="/order-tracking" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Order Tracking</a></li>
+              <li><a href="/size-guide" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Size Guide</a></li>
               <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Delivery & Returns</a></li>
-              <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Size Guide</a></li>
               <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Contact Us</a></li>
             </ul>
           </div>

@@ -1,13 +1,54 @@
-import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { X, Minus, Plus, ShoppingBag, Trash2, Tag, Check } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useCurrency } from '../context/CurrencyContext';
 
 interface CartProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const PROMO_CODES: Record<string, { discount: number; type: 'percent' | 'fixed'; label: string }> = {
+  'PAN10': { discount: 10, type: 'percent', label: '10% off' },
+  'PAN20': { discount: 20, type: 'percent', label: '20% off' },
+  'STREET500': { discount: 500, type: 'fixed', label: 'KSh 500 off' },
+  'WELCOME': { discount: 15, type: 'percent', label: '15% off first order' },
+};
+
 export default function Cart({ isOpen, onClose }: CartProps) {
   const { items, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
+  const { formatPrice } = useCurrency();
+  const [promoCode, setPromoCode] = useState('');
+  const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
+  const [promoError, setPromoError] = useState('');
+
+  const applyPromo = () => {
+    const code = promoCode.toUpperCase().trim();
+    if (PROMO_CODES[code]) {
+      setAppliedPromo(code);
+      setPromoError('');
+    } else {
+      setPromoError('Invalid promo code');
+      setAppliedPromo(null);
+    }
+  };
+
+  const removePromo = () => {
+    setAppliedPromo(null);
+    setPromoCode('');
+  };
+
+  // Calculate discount
+  let discount = 0;
+  if (appliedPromo && PROMO_CODES[appliedPromo]) {
+    const promo = PROMO_CODES[appliedPromo];
+    if (promo.type === 'percent') {
+      discount = totalPrice * (promo.discount / 100);
+    } else {
+      discount = promo.discount;
+    }
+  }
+  const finalTotal = Math.max(0, totalPrice - discount);
 
   if (!isOpen) return null;
 
@@ -109,10 +150,56 @@ export default function Cart({ isOpen, onClose }: CartProps) {
         {/* Footer */}
         {items.length > 0 && (
           <div className="p-6 border-t border-white/5 space-y-4">
+            {/* Promo Code */}
+            <div>
+              <label className="text-xs text-pan-muted mb-1 block">Promo Code</label>
+              {appliedPromo ? (
+                <div className="flex items-center justify-between p-2 bg-green-900/20 border border-green-900/30 rounded-sm">
+                  <div className="flex items-center gap-2">
+                    <Check size={14} className="text-green-400" />
+                    <span className="text-xs text-green-400 font-medium">{appliedPromo} — {PROMO_CODES[appliedPromo].label}</span>
+                  </div>
+                  <button onClick={removePromo} className="text-xs text-pan-muted hover:text-red-400">Remove</button>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={promoCode}
+                    onChange={(e) => { setPromoCode(e.target.value); setPromoError(''); }}
+                    placeholder="Enter code"
+                    className="flex-1 px-3 py-2 bg-pan-gray border border-white/10 rounded-sm text-white text-xs placeholder-pan-muted focus:outline-none focus:border-pan-accent"
+                  />
+                  <button
+                    onClick={applyPromo}
+                    className="px-3 py-2 bg-pan-light text-pan-white text-xs font-medium rounded-sm hover:bg-pan-accent transition-all"
+                  >
+                    Apply
+                  </button>
+                </div>
+              )}
+              {promoError && <p className="text-[10px] text-red-400 mt-1">{promoError}</p>}
+              <p className="text-[10px] text-pan-muted/60 mt-1">Try: PAN10, PAN20, WELCOME</p>
+            </div>
+
             {/* Subtotal */}
             <div className="flex items-center justify-between">
               <span className="text-sm text-pan-muted">Subtotal</span>
-              <span className="text-lg font-grotesk font-bold">KSh {totalPrice.toLocaleString()}</span>
+              <span className="text-sm text-pan-white">{formatPrice(totalPrice)}</span>
+            </div>
+
+            {/* Discount */}
+            {discount > 0 && (
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-green-400">Discount</span>
+                <span className="text-sm text-green-400">-{formatPrice(discount)}</span>
+              </div>
+            )}
+
+            {/* Total */}
+            <div className="flex items-center justify-between pt-2 border-t border-white/5">
+              <span className="text-sm font-medium text-pan-white">Total</span>
+              <span className="text-lg font-grotesk font-bold text-pan-white">{formatPrice(finalTotal)}</span>
             </div>
             <p className="text-xs text-pan-muted">Shipping calculated at checkout</p>
 
