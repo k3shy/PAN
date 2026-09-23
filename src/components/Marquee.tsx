@@ -1,0 +1,14 @@
+export default function Marquee() {
+  const text = "PINS & NEEDLE • STREETWEAR • SS26 • LIMITED EDITION • FREE SHIPPING OVER KSH 5,000 • ";
+
+  return (
+    <div className="bg-pan-accent py-3 overflow-hidden">
+      <div className="animate-marquee whitespace-nowrap flex">
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+      </div>
+    </div>
+  );
+}
