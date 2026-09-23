@@ -7,64 +7,64 @@ export default function Footer() {
       <div className="border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <p className="text-xs tracking-[0.2em] text-pan-muted text-center mb-6">SECURE PAYMENT METHODS</p>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
             {/* M-Pesa */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-pan-dark border border-white/10 rounded-sm">
-              <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-[8px] font-bold">M</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-pan-dark border border-white/10 rounded-sm">
+              <div className="w-5 h-5 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-[7px] font-bold">M</span>
               </div>
-              <span className="text-sm font-medium text-pan-white">M-Pesa</span>
+              <span className="text-xs sm:text-sm font-medium text-pan-white">M-Pesa</span>
             </div>
 
             {/* Pesapal */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-pan-dark border border-white/10 rounded-sm">
-              <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-[8px] font-bold">P</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-pan-dark border border-white/10 rounded-sm">
+              <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-[7px] font-bold">P</span>
               </div>
-              <span className="text-sm font-medium text-pan-white">Pesapal</span>
+              <span className="text-xs sm:text-sm font-medium text-pan-white">Pesapal</span>
             </div>
 
             {/* Mastercard */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-pan-dark border border-white/10 rounded-sm">
-              <div className="flex -space-x-1">
-                <div className="w-4 h-4 bg-red-600 rounded-full"></div>
-                <div className="w-4 h-4 bg-yellow-500 rounded-full opacity-80"></div>
+            <div className="flex items-center gap-2 px-3 py-2 bg-pan-dark border border-white/10 rounded-sm">
+              <div className="flex -space-x-1 flex-shrink-0">
+                <div className="w-3.5 h-3.5 bg-red-600 rounded-full"></div>
+                <div className="w-3.5 h-3.5 bg-yellow-500 rounded-full opacity-80"></div>
               </div>
-              <span className="text-sm font-medium text-pan-white">Mastercard</span>
+              <span className="text-xs sm:text-sm font-medium text-pan-white">Mastercard</span>
             </div>
 
             {/* Visa */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-pan-dark border border-white/10 rounded-sm">
-              <div className="w-6 h-6 bg-blue-700 rounded-sm flex items-center justify-center">
-                <span className="text-white text-[8px] font-bold italic">V</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-pan-dark border border-white/10 rounded-sm">
+              <div className="w-5 h-5 bg-blue-700 rounded-sm flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-[7px] font-bold italic">V</span>
               </div>
-              <span className="text-sm font-medium text-pan-white">Visa</span>
+              <span className="text-xs sm:text-sm font-medium text-pan-white">Visa</span>
             </div>
 
             {/* American Express */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-pan-dark border border-white/10 rounded-sm">
-              <div className="w-6 h-6 bg-blue-500 rounded-sm flex items-center justify-center">
-                <span className="text-white text-[7px] font-bold">AMEX</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-pan-dark border border-white/10 rounded-sm">
+              <div className="w-5 h-5 bg-blue-500 rounded-sm flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-[6px] font-bold">AMEX</span>
               </div>
-              <span className="text-sm font-medium text-pan-white">Amex</span>
+              <span className="text-xs sm:text-sm font-medium text-pan-white">Amex</span>
             </div>
 
             {/* Airtel Money */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-pan-dark border border-white/10 rounded-sm">
-              <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-[8px] font-bold">A</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-pan-dark border border-white/10 rounded-sm">
+              <div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-[7px] font-bold">A</span>
               </div>
-              <span className="text-sm font-medium text-pan-white">Airtel Money</span>
+              <span className="text-xs sm:text-sm font-medium text-pan-white">Airtel Money</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-pan-accent rounded-sm flex items-center justify-center">
                 <span className="text-white font-bold text-xs font-grotesk">P</span>
@@ -79,16 +79,16 @@ export default function Footer() {
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300">
+              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300" aria-label="Instagram">
                 <Instagram size={16} />
               </a>
-              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300">
+              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300" aria-label="Facebook">
                 <Facebook size={16} />
               </a>
-              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300">
+              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300" aria-label="TikTok">
                 <Music2 size={16} />
               </a>
-              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300">
+              <a href="#" className="w-9 h-9 bg-pan-dark border border-white/10 rounded-sm flex items-center justify-center hover:bg-pan-accent hover:border-pan-accent transition-all duration-300" aria-label="WhatsApp">
                 <MessageCircle size={16} />
               </a>
             </div>
@@ -147,11 +147,11 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-pan-muted">
+          <p className="text-xs text-pan-muted text-center md:text-left">
             © 2026 Pins & Needle (P.A.N). All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <span className="text-xs text-pan-muted">Designed with precision. Worn with pride.</span>
+            <span className="text-xs text-pan-muted text-center">Designed with precision. Worn with pride.</span>
           </div>
         </div>
       </div>

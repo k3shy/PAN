@@ -171,7 +171,7 @@ export default function Products() {
                   <button
                     onClick={() => handleAddToCart(product)}
                     disabled={product.isSoldOut}
-                    className={`px-6 py-3 text-sm font-semibold rounded-sm transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 ${
+                    className={`product-btn px-6 py-3 text-sm font-semibold rounded-sm transition-all duration-300 transform translate-y-4 opacity-0 ${
                       product.isSoldOut
                         ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                         : 'bg-white text-black hover:bg-pan-accent hover:text-white'

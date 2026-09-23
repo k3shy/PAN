@@ -12,15 +12,15 @@ export default function Cart({ isOpen, onClose }: CartProps) {
   if (!isOpen) return null;
 
   return (
-    <>
+    <div className="fixed inset-0 z-[100]">
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-overlay-in"
         onClick={onClose}
       ></div>
 
       {/* Cart Panel */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-pan-dark z-50 animate-slide-in flex flex-col border-l border-white/5">
+      <div className="absolute top-0 right-0 h-full w-full max-w-md bg-pan-dark animate-slide-in flex flex-col border-l border-white/5 shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-white/5">
           <div className="flex items-center gap-3">
@@ -60,7 +60,10 @@ export default function Cart({ isOpen, onClose }: CartProps) {
                   className="flex gap-4 p-4 bg-pan-gray rounded-sm border border-white/5"
                 >
                   {/* Product Image */}
-                  <div className="w-20 h-20 rounded-sm flex items-center justify-center flex-shrink-0 border border-white/10" style={{ backgroundColor: item.image }}>
+                  <div
+                    className="w-20 h-20 rounded-sm flex items-center justify-center flex-shrink-0 border border-white/10"
+                    style={{ backgroundColor: item.image || '#1a1a1a' }}
+                  >
                     <span className="text-white/40 font-grotesk font-bold text-lg">P</span>
                   </div>
 
@@ -151,6 +154,6 @@ export default function Cart({ isOpen, onClose }: CartProps) {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

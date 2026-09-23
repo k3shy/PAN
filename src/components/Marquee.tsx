@@ -4,12 +4,12 @@ export default function Marquee() {
   return (
     <div className="bg-pan-accent py-3 overflow-hidden relative">
       <div className="flex animate-marquee whitespace-nowrap">
-        <span className="text-sm font-bold tracking-wider text-white mx-2">{text}</span>
-        <span className="text-sm font-bold tracking-wider text-white mx-2">{text}</span>
-        <span className="text-sm font-bold tracking-wider text-white mx-2">{text}</span>
-        <span className="text-sm font-bold tracking-wider text-white mx-2">{text}</span>
-        <span className="text-sm font-bold tracking-wider text-white mx-2">{text}</span>
-        <span className="text-sm font-bold tracking-wider text-white mx-2">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
+        <span className="text-sm font-bold tracking-wider text-white mx-4">{text}</span>
       </div>
     </div>
   );
