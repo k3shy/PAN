@@ -10,21 +10,92 @@ interface Product {
   sizes: string[];
   isNew?: boolean;
   isSoldOut?: boolean;
-  color: string;
+  bgColor: string;
+  accentColor: string;
+  icon: string;
 }
 
 const products: Product[] = [
-  { id: 1, name: "P.A.N Oversized Hoodie", price: 5000, category: "tops", sizes: ["S", "M", "L", "XL"], isNew: true, color: "bg-gradient-to-br from-gray-800 to-gray-900" },
-  { id: 2, name: "Needle Cargo Pants", price: 4200, category: "bottoms", sizes: ["S", "M", "L", "XL"], isNew: true, color: "bg-gradient-to-br from-stone-800 to-stone-900" },
-  { id: 3, name: "Thread Theory Tee", price: 3000, category: "tops", sizes: ["S", "M", "L", "XL"], color: "bg-gradient-to-br from-zinc-700 to-zinc-900" },
-  { id: 4, name: "Stitch Bomber Jacket", price: 8500, category: "tops", sizes: ["M", "L", "XL"], isNew: true, color: "bg-gradient-to-br from-slate-700 to-slate-900" },
-  { id: 5, name: "P.A.N Track Pants", price: 3800, category: "bottoms", sizes: ["S", "M", "L"], color: "bg-gradient-to-br from-neutral-800 to-neutral-900" },
-  { id: 6, name: "Embroidered Cap", price: 2500, category: "accessories", sizes: ["One Size"], color: "bg-gradient-to-br from-gray-700 to-gray-900" },
-  { id: 7, name: "Deconstructed Crewneck", price: 4500, category: "tops", sizes: ["S", "M", "L", "XL"], isSoldOut: true, color: "bg-gradient-to-br from-stone-700 to-stone-900" },
-  { id: 8, name: "P.A.N Utility Shorts", price: 3200, category: "bottoms", sizes: ["S", "M", "L"], color: "bg-gradient-to-br from-zinc-800 to-zinc-900" },
+  { id: 1, name: "P.A.N Oversized Hoodie", price: 5000, category: "tops", sizes: ["S", "M", "L", "XL"], isNew: true, bgColor: "#1a1a1a", accentColor: "#e63946", icon: "hoodie" },
+  { id: 2, name: "Needle Cargo Pants", price: 4200, category: "bottoms", sizes: ["S", "M", "L", "XL"], isNew: true, bgColor: "#1c1c1c", accentColor: "#4a9eff", icon: "pants" },
+  { id: 3, name: "Thread Theory Tee", price: 3000, category: "tops", sizes: ["S", "M", "L", "XL"], bgColor: "#181818", accentColor: "#f5f5f5", icon: "tee" },
+  { id: 4, name: "Stitch Bomber Jacket", price: 8500, category: "tops", sizes: ["M", "L", "XL"], isNew: true, bgColor: "#1e1e1e", accentColor: "#e63946", icon: "jacket" },
+  { id: 5, name: "P.A.N Track Pants", price: 3800, category: "bottoms", sizes: ["S", "M", "L"], bgColor: "#191919", accentColor: "#4a9eff", icon: "pants" },
+  { id: 6, name: "Embroidered Cap", price: 2500, category: "accessories", sizes: ["One Size"], bgColor: "#1b1b1b", accentColor: "#f5f5f5", icon: "cap" },
+  { id: 7, name: "Deconstructed Crewneck", price: 4500, category: "tops", sizes: ["S", "M", "L", "XL"], isSoldOut: true, bgColor: "#1a1a1a", accentColor: "#888", icon: "tee" },
+  { id: 8, name: "P.A.N Utility Shorts", price: 3200, category: "bottoms", sizes: ["S", "M", "L"], bgColor: "#1c1c1c", accentColor: "#4a9eff", icon: "shorts" },
 ];
 
 const categories = ['All', 'Tops', 'Bottoms', 'Accessories'];
+
+function ProductSVG({ icon, accentColor }: { icon: string; accentColor: string }) {
+  switch (icon) {
+    case 'hoodie':
+      return (
+        <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
+          <path d="M35 30 L45 20 L75 20 L85 30 L95 50 L85 55 L80 45 L80 100 L40 100 L40 45 L35 55 L25 50 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <path d="M45 20 Q60 35 75 20" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <line x1="60" y1="35" x2="60" y2="65" stroke={accentColor} strokeWidth="1" strokeDasharray="3,3" />
+          <rect x="52" y="70" width="16" height="3" fill={accentColor} opacity="0.5" />
+        </svg>
+      );
+    case 'tee':
+      return (
+        <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
+          <path d="M35 30 L45 20 L55 25 Q60 28 65 25 L75 20 L85 30 L95 45 L85 50 L80 40 L80 100 L40 100 L40 40 L35 50 L25 45 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <path d="M55 25 Q60 30 65 25" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <text x="60" y="65" textAnchor="middle" fill={accentColor} fontSize="8" fontFamily="monospace" opacity="0.7">P.A.N</text>
+        </svg>
+      );
+    case 'jacket':
+      return (
+        <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
+          <path d="M35 25 L45 18 L55 22 L60 20 L65 22 L75 18 L85 25 L98 50 L88 55 L82 42 L82 105 L60 105 L38 105 L38 42 L32 55 L22 50 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <line x1="60" y1="20" x2="60" y2="105" stroke={accentColor} strokeWidth="1" />
+          <circle cx="55" cy="45" r="2" fill={accentColor} opacity="0.5" />
+          <circle cx="55" cy="60" r="2" fill={accentColor} opacity="0.5" />
+          <circle cx="55" cy="75" r="2" fill={accentColor} opacity="0.5" />
+          <rect x="42" y="80" width="12" height="10" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.5" />
+          <rect x="66" y="80" width="12" height="10" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.5" />
+        </svg>
+      );
+    case 'pants':
+      return (
+        <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
+          <path d="M40 15 L80 15 L82 20 L82 50 L75 110 L62 110 L60 60 L58 110 L45 110 L38 50 L38 20 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <line x1="40" y1="25" x2="80" y2="25" stroke={accentColor} strokeWidth="1" opacity="0.5" />
+          <rect x="45" y="30" width="8" height="8" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
+          <rect x="67" y="30" width="8" height="8" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
+        </svg>
+      );
+    case 'shorts':
+      return (
+        <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
+          <path d="M38 25 L82 25 L84 30 L84 50 L75 80 L62 80 L60 55 L58 80 L45 80 L36 50 L36 30 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <line x1="38" y1="35" x2="82" y2="35" stroke={accentColor} strokeWidth="1" opacity="0.5" />
+          <path d="M45 45 L55 45 L55 55 L45 55 Z" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
+          <path d="M65 45 L75 45 L75 55 L65 55 Z" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
+        </svg>
+      );
+    case 'cap':
+      return (
+        <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
+          <path d="M30 65 Q30 35 60 30 Q90 35 90 65 L90 70 L30 70 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <path d="M25 70 L95 70 Q100 70 100 75 L100 78 Q100 82 95 82 L25 82 Q20 82 20 78 L20 75 Q20 70 25 70" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <text x="60" y="55" textAnchor="middle" fill={accentColor} fontSize="10" fontFamily="monospace" fontWeight="bold" opacity="0.7">P</text>
+          <line x1="60" y1="30" x2="60" y2="25" stroke={accentColor} strokeWidth="1.5" />
+          <circle cx="60" cy="23" r="3" fill="none" stroke={accentColor} strokeWidth="1" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
+          <rect x="30" y="30" width="60" height="60" fill="none" stroke={accentColor} strokeWidth="1.5" />
+          <text x="60" y="65" textAnchor="middle" fill={accentColor} fontSize="12" fontFamily="monospace" opacity="0.7">P.A.N</text>
+        </svg>
+      );
+  }
+}
 
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -44,7 +115,7 @@ export default function Products() {
       name: product.name,
       price: product.price,
       size,
-      image: product.color
+      image: product.bgColor
     });
   };
 
@@ -90,22 +161,17 @@ export default function Products() {
               className="product-card group relative bg-pan-gray rounded-sm overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-500"
             >
               {/* Product Image */}
-              <div className={`relative aspect-square ${product.color} overflow-hidden`}>
+              <div className="relative aspect-square overflow-hidden" style={{ backgroundColor: product.bgColor }}>
                 <div className="product-image absolute inset-0 transition-transform duration-700 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-3 border border-white/20 rounded-sm flex items-center justify-center">
-                      <span className="text-lg font-grotesk font-bold text-white/60">P</span>
-                    </div>
-                    <p className="text-xs text-white/40 tracking-wider">{product.name.split(' ')[0]}</p>
-                  </div>
+                  <ProductSVG icon={product.icon} accentColor={product.accentColor} />
                 </div>
 
                 {/* Overlay */}
-                <div className="product-overlay absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                <div className="product-overlay absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 flex items-center justify-center">
                   <button
                     onClick={() => handleAddToCart(product)}
                     disabled={product.isSoldOut}
-                    className={`px-6 py-3 text-sm font-semibold rounded-sm transition-all ${
+                    className={`px-6 py-3 text-sm font-semibold rounded-sm transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 ${
                       product.isSoldOut
                         ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                         : 'bg-white text-black hover:bg-pan-accent hover:text-white'

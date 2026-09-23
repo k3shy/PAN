@@ -60,7 +60,7 @@ export default function Cart({ isOpen, onClose }: CartProps) {
                   className="flex gap-4 p-4 bg-pan-gray rounded-sm border border-white/5"
                 >
                   {/* Product Image */}
-                  <div className={`w-20 h-20 ${item.image} rounded-sm flex items-center justify-center flex-shrink-0`}>
+                  <div className="w-20 h-20 rounded-sm flex items-center justify-center flex-shrink-0 border border-white/10" style={{ backgroundColor: item.image }}>
                     <span className="text-white/40 font-grotesk font-bold text-lg">P</span>
                   </div>
 

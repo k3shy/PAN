@@ -4,25 +4,64 @@ const collections = [
   {
     title: "Thread Theory",
     subtitle: "SS26 Collection",
-    description: "Deconstructed silhouettes meet urban utility",
+    description: "Deconstructed silhouettes meet urban utility. Bold cuts, raw edges, and fearless design.",
     gradient: "from-pan-accent/20 to-pan-dark",
-    items: "12 Pieces"
+    items: "12 Pieces",
+    pattern: "diagonal"
   },
   {
     title: "Needle Point",
     subtitle: "Essentials",
-    description: "Premium basics with precision tailoring",
+    description: "Premium basics with precision tailoring. The foundation of every great outfit.",
     gradient: "from-blue-900/20 to-pan-dark",
-    items: "8 Pieces"
+    items: "8 Pieces",
+    pattern: "dots"
   },
   {
     title: "Stitch Culture",
     subtitle: "Limited Drop",
-    description: "Exclusive collab pieces — once gone, gone",
+    description: "Exclusive collab pieces — once gone, gone forever. Only 100 made worldwide.",
     gradient: "from-purple-900/20 to-pan-dark",
-    items: "6 Pieces"
+    items: "6 Pieces",
+    pattern: "grid"
   }
 ];
+
+function CollectionPattern({ pattern }: { pattern: string }) {
+  switch (pattern) {
+    case 'diagonal':
+      return (
+        <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 200 200">
+          {Array.from({ length: 20 }, (_, i) => (
+            <line key={i} x1={i * 20} y1="0" x2={i * 20 + 100} y2="200" stroke="white" strokeWidth="0.5" />
+          ))}
+        </svg>
+      );
+    case 'dots':
+      return (
+        <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 200 200">
+          {Array.from({ length: 10 }, (_, i) =>
+            Array.from({ length: 10 }, (_, j) => (
+              <circle key={`${i}-${j}`} cx={i * 22 + 10} cy={j * 22 + 10} r="2" fill="white" />
+            ))
+          )}
+        </svg>
+      );
+    case 'grid':
+      return (
+        <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 200 200">
+          {Array.from({ length: 10 }, (_, i) => (
+            <g key={i}>
+              <line x1={i * 22} y1="0" x2={i * 22} y2="200" stroke="white" strokeWidth="0.5" />
+              <line x1="0" y1={i * 22} x2="200" y2={i * 22} stroke="white" strokeWidth="0.5" />
+            </g>
+          ))}
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function Collections() {
   return (
@@ -43,7 +82,10 @@ export default function Collections() {
               key={index}
               className={`group relative overflow-hidden rounded-sm bg-gradient-to-br ${collection.gradient} border border-white/5 hover:border-pan-accent/30 transition-all duration-500 cursor-pointer`}
             >
-              <div className="p-8 md:p-10 min-h-[350px] flex flex-col justify-between">
+              {/* Pattern Background */}
+              <CollectionPattern pattern={collection.pattern} />
+
+              <div className="relative p-8 md:p-10 min-h-[350px] flex flex-col justify-between">
                 <div>
                   <p className="text-xs tracking-[0.2em] text-pan-muted mb-2">{collection.subtitle}</p>
                   <h3 className="text-2xl md:text-3xl font-grotesk font-bold mb-3 group-hover:text-pan-accent transition-colors duration-300">

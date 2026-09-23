@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import Collections from './components/Collections';
 import Products from './components/Products';
+import Lookbook from './components/Lookbook';
 import About from './components/About';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
@@ -21,6 +22,7 @@ function App() {
         <Marquee />
         <Collections />
         <Products />
+        <Lookbook />
         <About />
         <Newsletter />
         <Footer />

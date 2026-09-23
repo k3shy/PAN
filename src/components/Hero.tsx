@@ -3,25 +3,27 @@ import { ArrowRight } from 'lucide-react';
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src="https://image.qwenlm.ai/generated-images/5c4a87a5-7040-4411-b9de-2f3b1f6e6956/_result.png"
-          alt=""
-          className="w-full h-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-pan-black/80 via-pan-dark/70 to-pan-black/90"></div>
+      {/* Background with CSS art */}
+      <div className="absolute inset-0 bg-pan-black">
+        {/* Radial gradient spots */}
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,rgba(230,57,70,0.08)_0%,transparent_50%)]"></div>
+        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,rgba(230,57,70,0.05)_0%,transparent_50%)]"></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }}></div>
+
+        {/* Large brand watermark */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.02]">
+          <span className="text-[20rem] md:text-[30rem] font-grotesk font-bold text-white select-none">P</span>
+        </div>
       </div>
       
       {/* Decorative elements */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pan-accent/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-pan-accent/3 rounded-full blur-3xl"></div>
-      
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-        backgroundSize: '50px 50px'
-      }}></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pan-accent/5 rounded-full blur-[100px]"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-pan-accent/5 rounded-full blur-[80px]"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
