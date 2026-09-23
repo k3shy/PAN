@@ -1,34 +1,34 @@
-import { useState } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Marquee from './components/Marquee';
-import Collections from './components/Collections';
-import Products from './components/Products';
-import Lookbook from './components/Lookbook';
-import About from './components/About';
-import Newsletter from './components/Newsletter';
-import Footer from './components/Footer';
-import Cart from './components/Cart';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { ContentProvider } from './context/ContentContext';
 import { CartProvider } from './context/CartContext';
+import MainSite from './pages/MainSite';
+import Login from './pages/Login';
+import Portal from './pages/Portal';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
   return (
-    <CartProvider>
-      <div className="min-h-screen bg-pan-black text-pan-white font-inter">
-        <Header onCartClick={() => setIsCartOpen(true)} />
-        <Hero />
-        <Marquee />
-        <Collections />
-        <Products />
-        <Lookbook />
-        <About />
-        <Newsletter />
-        <Footer />
-        <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      </div>
-    </CartProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <ContentProvider>
+          <CartProvider>
+            <Routes>
+              <Route path="/" element={<MainSite />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/portal"
+                element={
+                  <ProtectedRoute>
+                    <Portal />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </CartProvider>
+        </ContentProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

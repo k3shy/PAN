@@ -149,6 +149,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-pan-muted text-center md:text-left">
             © 2026 Pins & Needle (P.A.N). All rights reserved.
+            <a href="/login" className="ml-4 text-pan-muted/30 hover:text-pan-accent transition-colors">Staff</a>
           </p>
           <div className="flex items-center gap-4">
             <span className="text-xs text-pan-muted text-center">Designed with precision. Worn with pride.</span>

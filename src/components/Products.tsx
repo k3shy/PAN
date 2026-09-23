@@ -1,30 +1,7 @@
 import { useState } from 'react';
 import { Heart, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  category: string;
-  sizes: string[];
-  isNew?: boolean;
-  isSoldOut?: boolean;
-  bgColor: string;
-  accentColor: string;
-  icon: string;
-}
-
-const products: Product[] = [
-  { id: 1, name: "P.A.N Oversized Hoodie", price: 5000, category: "tops", sizes: ["S", "M", "L", "XL"], isNew: true, bgColor: "#1a1a1a", accentColor: "#e63946", icon: "hoodie" },
-  { id: 2, name: "Needle Cargo Pants", price: 4200, category: "bottoms", sizes: ["S", "M", "L", "XL"], isNew: true, bgColor: "#1c1c1c", accentColor: "#4a9eff", icon: "pants" },
-  { id: 3, name: "Thread Theory Tee", price: 3000, category: "tops", sizes: ["S", "M", "L", "XL"], bgColor: "#181818", accentColor: "#f5f5f5", icon: "tee" },
-  { id: 4, name: "Stitch Bomber Jacket", price: 8500, category: "tops", sizes: ["M", "L", "XL"], isNew: true, bgColor: "#1e1e1e", accentColor: "#e63946", icon: "jacket" },
-  { id: 5, name: "P.A.N Track Pants", price: 3800, category: "bottoms", sizes: ["S", "M", "L"], bgColor: "#191919", accentColor: "#4a9eff", icon: "pants" },
-  { id: 6, name: "Embroidered Cap", price: 2500, category: "accessories", sizes: ["One Size"], bgColor: "#1b1b1b", accentColor: "#f5f5f5", icon: "cap" },
-  { id: 7, name: "Deconstructed Crewneck", price: 4500, category: "tops", sizes: ["S", "M", "L", "XL"], isSoldOut: true, bgColor: "#1a1a1a", accentColor: "#888", icon: "tee" },
-  { id: 8, name: "P.A.N Utility Shorts", price: 3200, category: "bottoms", sizes: ["S", "M", "L"], bgColor: "#1c1c1c", accentColor: "#4a9eff", icon: "shorts" },
-];
+import { useContent } from '../context/ContentContext';
 
 const categories = ['All', 'Tops', 'Bottoms', 'Accessories'];
 
@@ -55,8 +32,6 @@ function ProductSVG({ icon, accentColor }: { icon: string; accentColor: string }
           <circle cx="55" cy="45" r="2" fill={accentColor} opacity="0.5" />
           <circle cx="55" cy="60" r="2" fill={accentColor} opacity="0.5" />
           <circle cx="55" cy="75" r="2" fill={accentColor} opacity="0.5" />
-          <rect x="42" y="80" width="12" height="10" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.5" />
-          <rect x="66" y="80" width="12" height="10" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.5" />
         </svg>
       );
     case 'pants':
@@ -64,8 +39,6 @@ function ProductSVG({ icon, accentColor }: { icon: string; accentColor: string }
         <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
           <path d="M40 15 L80 15 L82 20 L82 50 L75 110 L62 110 L60 60 L58 110 L45 110 L38 50 L38 20 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
           <line x1="40" y1="25" x2="80" y2="25" stroke={accentColor} strokeWidth="1" opacity="0.5" />
-          <rect x="45" y="30" width="8" height="8" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
-          <rect x="67" y="30" width="8" height="8" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
         </svg>
       );
     case 'shorts':
@@ -73,8 +46,6 @@ function ProductSVG({ icon, accentColor }: { icon: string; accentColor: string }
         <svg viewBox="0 0 120 120" className="w-24 h-24 opacity-60">
           <path d="M38 25 L82 25 L84 30 L84 50 L75 80 L62 80 L60 55 L58 80 L45 80 L36 50 L36 30 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
           <line x1="38" y1="35" x2="82" y2="35" stroke={accentColor} strokeWidth="1" opacity="0.5" />
-          <path d="M45 45 L55 45 L55 55 L45 55 Z" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
-          <path d="M65 45 L75 45 L75 55 L65 55 Z" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.4" />
         </svg>
       );
     case 'cap':
@@ -83,8 +54,6 @@ function ProductSVG({ icon, accentColor }: { icon: string; accentColor: string }
           <path d="M30 65 Q30 35 60 30 Q90 35 90 65 L90 70 L30 70 Z" fill="none" stroke={accentColor} strokeWidth="1.5" />
           <path d="M25 70 L95 70 Q100 70 100 75 L100 78 Q100 82 95 82 L25 82 Q20 82 20 78 L20 75 Q20 70 25 70" fill="none" stroke={accentColor} strokeWidth="1.5" />
           <text x="60" y="55" textAnchor="middle" fill={accentColor} fontSize="10" fontFamily="monospace" fontWeight="bold" opacity="0.7">P</text>
-          <line x1="60" y1="30" x2="60" y2="25" stroke={accentColor} strokeWidth="1.5" />
-          <circle cx="60" cy="23" r="3" fill="none" stroke={accentColor} strokeWidth="1" />
         </svg>
       );
     default:
@@ -98,16 +67,17 @@ function ProductSVG({ icon, accentColor }: { icon: string; accentColor: string }
 }
 
 export default function Products() {
+  const { content } = useContent();
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({});
   const [wishlist, setWishlist] = useState<number[]>([]);
   const { addToCart } = useCart();
 
   const filteredProducts = activeCategory === 'All'
-    ? products
-    : products.filter(p => p.category === activeCategory.toLowerCase());
+    ? content.products
+    : content.products.filter(p => p.category === activeCategory.toLowerCase());
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product: typeof content.products[0]) => {
     if (product.isSoldOut) return;
     const size = selectedSizes[product.id] || product.sizes[0];
     addToCart({
@@ -126,7 +96,6 @@ export default function Products() {
   return (
     <section id="products" className="py-20 md:py-32 bg-pan-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <div>
             <p className="text-sm tracking-[0.3em] text-pan-accent mb-3">SHOP</p>
@@ -134,8 +103,6 @@ export default function Products() {
               Latest Drops
             </h2>
           </div>
-
-          {/* Category Filter */}
           <div className="flex gap-2 mt-6 md:mt-0">
             {categories.map(cat => (
               <button
@@ -153,20 +120,17 @@ export default function Products() {
           </div>
         </div>
 
-        {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProducts.map(product => (
             <div
               key={product.id}
               className="product-card group relative bg-pan-gray rounded-sm overflow-hidden border border-white/5 hover:border-white/10 transition-all duration-500"
             >
-              {/* Product Image */}
               <div className="relative aspect-square overflow-hidden" style={{ backgroundColor: product.bgColor }}>
                 <div className="product-image absolute inset-0 transition-transform duration-700 flex items-center justify-center">
                   <ProductSVG icon={product.icon} accentColor={product.accentColor} />
                 </div>
 
-                {/* Overlay */}
                 <div className="product-overlay absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 flex items-center justify-center">
                   <button
                     onClick={() => handleAddToCart(product)}
@@ -181,7 +145,6 @@ export default function Products() {
                   </button>
                 </div>
 
-                {/* Badges */}
                 <div className="absolute top-3 left-3 flex flex-col gap-2">
                   {product.isNew && (
                     <span className="px-2 py-1 bg-pan-accent text-white text-[10px] font-bold tracking-wider rounded-sm">NEW</span>
@@ -191,7 +154,6 @@ export default function Products() {
                   )}
                 </div>
 
-                {/* Wishlist */}
                 <button
                   onClick={() => toggleWishlist(product.id)}
                   className="absolute top-3 right-3 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pan-accent transition-colors"
@@ -203,7 +165,6 @@ export default function Products() {
                 </button>
               </div>
 
-              {/* Product Info */}
               <div className="p-4">
                 <h3 className="text-sm font-medium text-pan-white mb-1 group-hover:text-pan-accent transition-colors">
                   {product.name}
@@ -211,8 +172,6 @@ export default function Products() {
                 <p className="text-lg font-grotesk font-bold text-pan-white mb-3">
                   KSh {product.price.toLocaleString()}
                 </p>
-
-                {/* Size selector */}
                 <div className="flex gap-1.5">
                   {product.sizes.map(size => (
                     <button
@@ -233,7 +192,6 @@ export default function Products() {
           ))}
         </div>
 
-        {/* View All */}
         <div className="text-center mt-12">
           <a
             href="#"
