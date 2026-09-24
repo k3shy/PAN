@@ -11,6 +11,7 @@ import Wishlist from './pages/Wishlist';
 import OrderTracking from './pages/OrderTracking';
 import FAQ from './pages/FAQ';
 import SizeGuide from './pages/SizeGuide';
+import CustomOrders from './pages/CustomOrders';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
                 <Route path="/order-tracking" element={<OrderTracking />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/size-guide" element={<SizeGuide />} />
+                <Route path="/custom-orders" element={<CustomOrders />} />
                 <Route path="/login" element={<Login />} />
                 <Route
                   path="/portal"

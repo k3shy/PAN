@@ -21,6 +21,7 @@ export default function Header({ onCartClick }: HeaderProps) {
     { label: 'Bottoms', hash: '#products' },
     { label: 'Accessories', hash: '#products' },
     { label: 'Collections', hash: '#collections' },
+    { label: 'Custom Orders', path: '/custom-orders' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
@@ -76,15 +77,26 @@ export default function Header({ onCartClick }: HeaderProps) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map(link => (
-              <a
-                key={link.label}
-                href={link.hash}
-                className="text-sm font-medium text-pan-muted hover:text-pan-white transition-colors duration-300 relative group"
-                onClick={(e) => handleNavClick(e, link.hash)}
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pan-accent transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              link.path ? (
+                <Link
+                  key={link.label}
+                  to={link.path}
+                  className="text-sm font-medium text-pan-muted hover:text-pan-white transition-colors duration-300 relative group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pan-accent transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.hash}
+                  className="text-sm font-medium text-pan-muted hover:text-pan-white transition-colors duration-300 relative group"
+                  onClick={(e) => handleNavClick(e, link.hash!)}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pan-accent transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              )
             ))}
           </nav>
 
@@ -164,14 +176,25 @@ export default function Header({ onCartClick }: HeaderProps) {
         <div className="md:hidden bg-pan-dark border-t border-white/5 absolute top-full left-0 right-0">
           <nav className="px-4 py-6 space-y-4">
             {navLinks.map(link => (
-              <a
-                key={link.label}
-                href={link.hash}
-                className="block text-lg font-medium text-pan-muted hover:text-pan-white transition-colors py-2"
-                onClick={(e) => handleNavClick(e, link.hash)}
-              >
-                {link.label}
-              </a>
+              link.path ? (
+                <Link
+                  key={link.label}
+                  to={link.path}
+                  className="block text-lg font-medium text-pan-muted hover:text-pan-white transition-colors py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.hash}
+                  className="block text-lg font-medium text-pan-muted hover:text-pan-white transition-colors py-2"
+                  onClick={(e) => handleNavClick(e, link.hash!)}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
             <div className="pt-4 border-t border-white/10 space-y-3">
               <div className="flex items-center gap-3">

@@ -1,4 +1,5 @@
 import { Instagram, Facebook, MessageCircle, Music2, Phone, Mail, Link2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useContent } from '../context/ContentContext';
 
 function SocialIcon({ icon, size = 16 }: { icon: string; size?: number }) {
@@ -170,6 +171,7 @@ export default function Footer() {
               <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Bottoms</a></li>
               <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Accessories</a></li>
               <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Collections</a></li>
+              <li><Link to="/custom-orders" className="text-sm text-pan-accent hover:text-red-400 transition-colors font-medium">Custom Orders</Link></li>
               <li><a href="#" className="text-sm text-pan-muted hover:text-pan-white transition-colors">Sale</a></li>
             </ul>
           </div>
