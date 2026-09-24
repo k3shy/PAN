@@ -12,6 +12,7 @@ import OrderTracking from './pages/OrderTracking';
 import FAQ from './pages/FAQ';
 import SizeGuide from './pages/SizeGuide';
 import CustomOrders from './pages/CustomOrders';
+import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </CurrencyProvider>
           </CartProvider>

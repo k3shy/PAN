@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Marquee from '../components/Marquee';
@@ -20,6 +20,13 @@ interface MainSiteProps {
 
 export default function MainSite({ wishlist, toggleWishlist, onSplashComplete }: MainSiteProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onSplashComplete();
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [onSplashComplete]);
 
   return (
     <div className="min-h-screen bg-pan-black text-pan-white font-inter pb-16 md:pb-0">

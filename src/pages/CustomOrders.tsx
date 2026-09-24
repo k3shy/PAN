@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Upload, X, Check, ArrowRight, Image as ImageIcon, Package, Clock, DollarSign } from 'lucide-react';
+import Layout from '../components/Layout';
 
 interface UploadedImage {
   id: string;
@@ -157,7 +158,8 @@ export default function CustomOrders() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-pan-black pt-24 pb-20">
+      <Layout>
+      <div className="pt-24 pb-20">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-pan-dark border border-white/5 rounded-sm p-8 md:p-12 text-center">
             <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -188,11 +190,13 @@ export default function CustomOrders() {
           </div>
         </div>
       </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-pan-black pt-24 pb-20">
+    <Layout>
+    <div className="pt-24 pb-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
@@ -446,5 +450,6 @@ export default function CustomOrders() {
         </form>
       </div>
     </div>
+    </Layout>
   );
 }

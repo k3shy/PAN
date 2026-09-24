@@ -1,4 +1,5 @@
 import { Ruler, Info } from 'lucide-react';
+import Layout from '../components/Layout';
 
 const sizeCharts = {
   tops: {
@@ -41,7 +42,8 @@ const measuringTips = [
 
 export default function SizeGuide() {
   return (
-    <div className="min-h-screen bg-pan-black pt-24 pb-20">
+    <Layout>
+    <div className="pt-24 pb-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
@@ -186,5 +188,6 @@ export default function SizeGuide() {
         </div>
       </div>
     </div>
+    </Layout>
   );
 }

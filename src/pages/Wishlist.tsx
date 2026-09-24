@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../context/ContentContext';
 import { useCart } from '../context/CartContext';
 import { useCurrency } from '../context/CurrencyContext';
+import Layout from '../components/Layout';
 
 interface WishlistPageProps {
   wishlist: number[];
@@ -28,7 +29,8 @@ export default function WishlistPage({ wishlist, onRemove }: WishlistPageProps) 
   };
 
   return (
-    <div className="min-h-screen bg-pan-black pt-24 pb-20">
+    <Layout>
+    <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-grotesk font-bold text-pan-white">
@@ -104,5 +106,6 @@ export default function WishlistPage({ wishlist, onRemove }: WishlistPageProps) 
         )}
       </div>
     </div>
+    </Layout>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
+import Layout from '../components/Layout';
 
 const faqCategories = [
   {
@@ -67,7 +68,8 @@ export default function FAQ() {
     .filter(cat => activeCategory === 'all' || cat.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-pan-black pt-24 pb-20">
+    <Layout>
+    <div className="pt-24 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-grotesk font-bold text-pan-white mb-4">
@@ -189,5 +191,6 @@ export default function FAQ() {
         </div>
       </div>
     </div>
+    </Layout>
   );
 }
